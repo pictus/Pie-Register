@@ -611,6 +611,9 @@ if( !class_exists('PieRegister') ){
 					array_push($form_ids, 'reg_form_'.$option['Id']);
 					$fields_data 	= maybe_unserialize(get_option("piereg_form_fields_".$option['Id']));
 					$the_cap_field = "captcha";
+					if(!$fields_data) {
+						continue;
+					}
 					$fields_data_filtered = array_filter($fields_data, function($el) use ($the_cap_field) {
 						return ( $el['type'] == $the_cap_field );
 					});
